@@ -122,13 +122,29 @@
       }, 0); //this zero sets the intial total to zero, otherwise it doesn't work
 
       console.log(totalYear);
+
       // 5. Sort the inventors by years lived
+      const oldest = inventors.sort(function (a, b) {
+        const lastGuy = a.passed - a.year;
+        const nextGuy = b.passed - b.year;
+        return lastGuy > nextGuy ? -1 : 1;
+      });
+
+      console.table(oldest);
 
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+      //Exercise 6 done in console per tutorial
+
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+      const alpha = people.sort((lastOne, nextOne) => {
+        const [aLast, aFirst] = lastOne.split(", ");
+        const [bLast, bFirst] = nextOne.split(", ");
+        return aLast > bLast ? 1 : -1;
+      });
+      console.log(alpha);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -148,6 +164,21 @@
         "car",
         "truck",
       ];
+
+      // itterate through the data array
+      const transportation = data.reduce(function (obj, item) {
+        //if the item doesn't exist as a key, counter remains at zero
+        if (!obj[item]) {
+          obj[item] = 0;
+        }
+        //if the item does exist as a key, increment our counter
+        obj[item]++;
+        return obj;
+        //the , {} below indicates that the empty object is the second arguemnt passed to our reduce function
+        // hence the reduce returns an object
+      }, {});
+
+      console.log(transportation);
     </script>
   </body>
 </html>
